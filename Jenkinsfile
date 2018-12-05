@@ -12,7 +12,8 @@ node {
             // Exec into Docker image containing Terraform
             docker.image("amazonlinux").inside {
                 // Run our Infrastructure as Code
-                sh 'dummy.sh'
+                sh 'sh dummy.sh'
+                sh 'mvn clean install'
             }
         }
 
