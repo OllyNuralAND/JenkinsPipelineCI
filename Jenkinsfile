@@ -10,7 +10,7 @@ node {
 
         stage('Build and Test') {
             // Exec into Docker image containing Terraform
-            docker.image("amazonlinux").inside {
+            docker.image("hashicorp/terraform").inside {
                 // Run our Infrastructure as Code
                 sh 'sh dummy.sh'
             }
@@ -18,7 +18,7 @@ node {
 
         stage('Clean Up') {
             sh "docker ps -al"
-            sh "docker rmi -f 'amazonlinux'"
+            sh "docker rmi -f 'hashicorp/terraform'"
         }
 
 
