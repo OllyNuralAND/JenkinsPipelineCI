@@ -14,9 +14,9 @@ node {
             sh "ls"
 
            // sh "docker run -v /data:/data hashicorp/terraform:light plan main.tf"
-            // sh "docker run -v /data:/data hashicorp/terraform:light plan data/main.tf"
-            sh "docker run -v $(pwd):/app/ -w /app/ hashicorp/terraform:light init"
-            sh "docker run -v $(pwd):/app/ -w /app/ hashicorp/terraform:light plan main.tf"
+            // sh 'docker run -v /data:/data hashicorp/terraform:light plan data/main.tf'
+            sh 'docker run -v $(pwd):/app/ -w /app/ hashicorp/terraform:light init'
+            sh 'docker run -v $(pwd):/app/ -w /app/ hashicorp/terraform:light plan main.tf'
             // sh "docker run -i -t hashicorp/terraform:light apply main.tf"
 
             // docker.image("hashicorp/terraform").inside {
