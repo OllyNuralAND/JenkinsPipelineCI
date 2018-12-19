@@ -13,7 +13,6 @@ node {
             docker.image("amazonlinux").inside {
                 // Run our Infrastructure as Code
                 sh 'sh dummy.sh'
-                sh 'mvn clean install'
             }
         }
 
