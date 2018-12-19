@@ -12,7 +12,7 @@ node {
             // Exec into Docker image containing Terraform
             docker.image("hashicorp/terraform").inside {
                 // Run our Infrastructure as Code
-                sh 'sh dummy.sh'
+                sh 'sh main.sh'
             }
         }
 
