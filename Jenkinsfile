@@ -9,28 +9,15 @@ node {
         }
 
         stage('Build and Test') {
-            // Exec into Docker image containing Terraform
-
-            sh "ls"
-
-           // sh "docker run -v /data:/data hashicorp/terraform:light plan main.tf"
-            // sh 'docker run -v /data:/data hashicorp/terraform:light plan data/main.tf'
-            sh 'docker run -v $(pwd):/app/ -w /app/ hashicorp/terraform:light init'
-            sh 'docker run -v $(pwd):/app/ -w /app/ hashicorp/terraform:light plan main.tf'
-            // sh "docker run -i -t hashicorp/terraform:light apply main.tf"
-
-            // docker.image("hashicorp/terraform").inside {
-            //     // Run our Infrastructure as Code
-            //     sh 'sh main.sh'
-            // }
+            sh 'docker run -v $(pwd):/app/ -v ${HOME}/.aws:/root/.aws -w /app/ hashicorp/terraform:light init'
+            sh 'docker run -v $(pwd):/app/ -v ${HOME}/.aws:/root/.aws -w /app/ hashicorp/terraform:light validate'
+            sh 'docker run -v $(pwd):/app/ -v ${HOME}/.aws:/root/.aws -w /app/ hashicorp/terraform:light plan'
         }
 
         stage('Clean Up') {
             sh "docker ps -al"
             sh "docker rmi -f 'hashicorp/terraform'"
         }
-
-
     } catch (e) {
         throw e
     }
