@@ -11,7 +11,7 @@ node {
         stage('Build and Test') {
             // Exec into Docker image containing Terraform
 
-            sh "docker run -i -t hashicorp/terraform:light plan main.tf"
+            sh "docker run hashicorp/terraform:light plan main.tf"
             // sh "docker run -i -t hashicorp/terraform:light apply main.tf"
 
             // docker.image("hashicorp/terraform").inside {
